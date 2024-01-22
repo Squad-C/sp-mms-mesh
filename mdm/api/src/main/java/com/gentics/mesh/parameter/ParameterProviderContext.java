@@ -3,8 +3,10 @@ package com.gentics.mesh.parameter;
 import com.gentics.mesh.handler.ActionContext;
 import com.gentics.mesh.parameter.impl.BackupParametersImpl;
 import com.gentics.mesh.parameter.impl.DeleteParametersImpl;
+import com.gentics.mesh.parameter.impl.DisplayParametersImpl;
 import com.gentics.mesh.parameter.impl.GenericParametersImpl;
 import com.gentics.mesh.parameter.impl.ImageManipulationParametersImpl;
+import com.gentics.mesh.parameter.impl.ImageManipulationRetrievalParametersImpl;
 import com.gentics.mesh.parameter.impl.IndexMaintenanceParametersImpl;
 import com.gentics.mesh.parameter.impl.JobParametersImpl;
 import com.gentics.mesh.parameter.impl.NodeParametersImpl;
@@ -66,6 +68,10 @@ public interface ParameterProviderContext extends ActionContext {
 		return new GenericParametersImpl(this);
 	}
 
+	default ImageManipulationRetrievalParameters getImageManipulationRetrievalParameters() {
+		return new ImageManipulationRetrievalParametersImpl(this);
+	}
+
 	default SearchParameters getSearchParameters() {
 		return new SearchParametersImpl(this);
 	}
@@ -80,5 +86,9 @@ public interface ParameterProviderContext extends ActionContext {
 
 	default JobParameters getJobParameters() {
 		return new JobParametersImpl(this);
+	}
+
+	default DisplayParameters getDisplayParameters() {
+		return new DisplayParametersImpl(this);
 	}
 }
